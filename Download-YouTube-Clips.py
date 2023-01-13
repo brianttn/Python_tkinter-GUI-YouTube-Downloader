@@ -151,6 +151,43 @@ def btn1ClickFunc():
         opt4.grid(row=rowIdx)
         rowIdx += 1
 
+    # = = = = = = = = = = = =   Button3   = = = = = = = = = = = =
+    # - - - - - -   Button3的callback   - - - - - -
+    def btn3ClickFunc():
+        # Retrieve 「StringVar()：download_Path」 value
+        downloadFolderStr = download_Path.get()
+
+        if downloadFolderStr == '':
+            saveMsg = '存檔位罝：目前工作目錄'
+        else:
+            saveMsg = f'存檔位罝：{downloadFolderStr}'
+
+        # Retrieve 「StringVar()：youTubeURL」 value
+        urlStr = youTubeURL.get()
+
+        # Retrieve 「StringVar()：clipResolution」 value
+        clipResStr = clipResolution.get()
+
+        # Download the video to destination directory
+        YouTube(urlStr).streams.filter(res=clipResStr).first().download(downloadFolderStr)
+
+        # Display the message
+        messagebox.showinfo(
+            "下載完成",
+            saveMsg
+        )
+
+    btn3 = tk.Button(
+        resListFrame,
+        text='下載影片',
+        font=('微軟正黑體', 12),
+        command=btn3ClickFunc,
+        bg='#FFD700',
+        fg='Black'
+    )
+
+    btn3.grid(row=rowIdx, pady=10)     # 排版
+
 # - - - - - -   建立：Button1元件   - - - - - -
 btn1 = tk.Button(
     resListFrame,
