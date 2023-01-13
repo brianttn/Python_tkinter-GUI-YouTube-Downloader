@@ -1,0 +1,8 @@
+# virtualenv
+.venv/
+
+# Byte-compiled
+__pycache__/
+
+# Test URL
+testURL.txt
