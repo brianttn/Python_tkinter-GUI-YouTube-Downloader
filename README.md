@@ -10,7 +10,7 @@
 
 ## User Interface
 
-![User interface demo image](app-GUI.png)
+![User interface demo image](app-GUI.PNG)
 
 ## Implementation
 
