@@ -103,6 +103,54 @@ def btn1ClickFunc():
         messagebox.showerror('URL錯誤', '不支援此影片格式或網址錯誤!!')
         return
 
+    # = = = = = = = = = = = =   Label2   = = = = = = = = = = = =
+    label2 = tk.Label(
+        resListFrame,
+        fg='black',
+        bg='lightBlue',
+        text='請選取影片畫質',
+        font=('微軟正黑體', 12)
+    )
+
+    label2.grid(row=1, pady=5)     # 排版
+
+    # = = = = = = = =   Get available video resolutions   = = = = = = = =
+    selectFlag = False
+    rowIdx = 2
+
+    # Progressive download：Streams that contain the audio and video in a single file.
+    if youTubeObj.streams.filter(res="360p", progressive=True):
+        opt1=tk.Radiobutton(resListFrame, text="360p", value="360p", variable=clipResolution)
+        opt1.grid(row=rowIdx)
+        rowIdx += 1
+
+        if selectFlag == False:
+            opt1.select()
+            selectFlag = True
+
+    if youTubeObj.streams.filter(res="480p", progressive=True):
+        opt2=tk.Radiobutton(resListFrame, text="480p", value="480p", variable=clipResolution)
+        opt2.grid(row=rowIdx)
+        rowIdx += 1
+
+        if selectFlag == False:
+            opt2.select()
+            selectFlag = True
+
+    if youTubeObj.streams.filter(res="720p", progressive=True):
+        opt3=tk.Radiobutton(resListFrame, text="720p", value="720p", variable=clipResolution)
+        opt3.grid(row=rowIdx)
+        rowIdx += 1
+
+        if selectFlag == False:
+            opt3.select()
+            selectFlag = True
+
+    if youTubeObj.streams.filter(res="1080p", progressive=True):
+        opt4=tk.Radiobutton(resListFrame, text="1080p", value="1080p", variable=clipResolution)
+        opt4.grid(row=rowIdx)
+        rowIdx += 1
+
 # - - - - - -   建立：Button1元件   - - - - - -
 btn1 = tk.Button(
     resListFrame,
