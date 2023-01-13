@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox, filedialog
+from pytube import YouTube
 
 # = = = = = = = = = = = =   主視窗   = = = = = = = = = = = =
 root = tk.Tk()                  # Main window
@@ -66,11 +68,21 @@ entry2 = tk.Entry(
 entry2.place(relx=0.53, rely=0.75, anchor='center')     # 排版
 
 # = = = = = = = = = = = =   Button2   = = = = = = = = = = = =
+# - - - - - -   Button2的callback   - - - - - -
+def btn2ClickFunc():
+    download_Directory = filedialog.askdirectory(
+        title="儲存影片",
+        initialdir=r'D:'        # 初始資料夾位置
+    )
+
+    download_Path.set(download_Directory)       # Set the file storage path
+
 # - - - - - -   建立：Button2元件   - - - - - -
 btn2 = tk.Button(
     urlInputFrame,
     text='瀏 覽',
     font=('微軟正黑體', 12),
+    command=btn2ClickFunc,
     fg='Black'
 )
 
@@ -79,11 +91,24 @@ btn2.place(relx=0.76, rely=0.75, anchor='center')     # 排版
 
 # = = = = = = = = = = = =   Frame2：urlInputFrame   = = = = = = = = = = = =
 # = = = = = = = = = = = =   Button1   = = = = = = = = = = = =
+# - - - - - -   Button1的callback   - - - - - -
+def btn1ClickFunc():
+    # Retrieve 「StringVar()：youTubeURL」 value
+    urlStr = youTubeURL.get()
+
+    # - - -   測試：pytube是否支援此網址、網址是否正確   - - -
+    try:
+        youTubeObj = YouTube(urlStr)
+    except:
+        messagebox.showerror('URL錯誤', '不支援此影片格式或網址錯誤!!')
+        return
+
 # - - - - - -   建立：Button1元件   - - - - - -
 btn1 = tk.Button(
     resListFrame,
     text='取得影片解析度清單',
     font=('微軟正黑體', 12),
+    command=btn1ClickFunc,
     bg='#FFD700',
     fg='Black'
 )
